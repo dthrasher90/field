@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="//cdn.jsdelivr.net/phaser/2.6.2/phaser.min.js"></script>
+    </head>
+    <body>
+
+    <script type="text/javascript">
+
+    window.onload = function() {
+
+        //  Note that this html file is set to pull down Phaser 2.5.0 from the JS Delivr CDN.
+        //  Although it will work fine with this tutorial, it's almost certainly not the most current version.
+        //  Be sure to replace it with an updated version before you start experimenting with adding your own code.
+
+        var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });
+        var wr1;
+        function preload () {
+
+            game.load.image('field', 'field.png');
+            game.load.image('wr1', 'reddot.png');
+            game.load.image('wr2', 'reddot.png');
+            game.load.image('qb', 'reddot.png');
+            game.load.image('football', 'football.png')
+
+        }
+
+        function create () {
+            game.physics.startSystem(Phaser.Physics.ARCADE);
+            var field = game.add.sprite(game.world.centerX, game.world.centerY, 'field');
+            field.scale.setTo(2.75);
+            field.anchor.setTo(0.5);
+
+            var wr1 = game.add.sprite(500,200, 'wr1');
+             wr1.scale.setTo(0.5);
+
+            //  wr1.animations.add('run');
+            //  wr1.animations.play('run', 10, true);
+             game.physics.arcade.enable(wr1);
+
+
+
+             var wr2 = game.add.sprite(500, 250, 'wr2');
+              wr2.scale.setTo(0.5);
+
+
+                tween = game.add.tween(wr1);
+                tween.to({ x: 450}, 5000, 'Linear', true, 0);
+                tween = game.add.tween(wr2);
+                tween.to({ x: 450, 7:300},1000, 'Linear', true, 0);
+
+
+            var qb = game.add.sprite(500, 300, 'qb');
+                qb.scale.setTo(0.5);
+             var football = game.add.sprite(500, 300, 'football');
+                    football.scale.setTo(0.1);
+
+
+        }
+
+        function  update(){
+
+
+
+        }
+
+
+    };
+
+    </script>
+
+    </body>
+</html>
