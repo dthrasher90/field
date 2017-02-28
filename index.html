@@ -16,14 +16,17 @@
         //  Be sure to replace it with an updated version before you start experimenting with adding your own code.
 
         var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });
-        var wr1;
+      //  game.physics.enable(wr1, wr2, Phaser.Physics.ARCADE);
+
         function preload () {
 
             game.load.image('field', 'field.png');
             game.load.image('wr1', 'reddot.png');
             game.load.image('wr2', 'reddot.png');
+            game.load.image('wr3', 'reddot.png');
+            game.load.image('wr4', 'reddot.png');
             game.load.image('qb', 'reddot.png');
-            game.load.image('football', 'football.png')
+            game.load.image('football', 'football.png');
 
         }
 
@@ -33,36 +36,45 @@
             field.scale.setTo(2.75);
             field.anchor.setTo(0.5);
 
-            var wr1 = game.add.sprite(500,200, 'wr1');
+            var wr1 = game.add.sprite(500,100, 'wr1');
              wr1.scale.setTo(0.5);
 
-            //  wr1.animations.add('run');
-            //  wr1.animations.play('run', 10, true);
-             game.physics.arcade.enable(wr1);
 
+            var wr2 = game.add.sprite(500,300, 'wr2');
+             wr2.scale.setTo(0.5);
 
+             var wr3 = game.add.sprite(500,400, 'wr3');
+              wr3.scale.setTo(0.5);
 
-             var wr2 = game.add.sprite(500, 250, 'wr2');
-              wr2.scale.setTo(0.5);
-
-
-                tween = game.add.tween(wr1);
-                tween.to({ x: 450}, 5000, 'Linear', true, 0);
-                tween = game.add.tween(wr2);
-                tween.to({ x: 450, 7:300},1000, 'Linear', true, 0);
-
+              var wr4 = game.add.sprite(500,455, 'wr4');
+               wr4.scale.setTo(0.5);
 
             var qb = game.add.sprite(500, 300, 'qb');
-                qb.scale.setTo(0.5);
-             var football = game.add.sprite(500, 300, 'football');
-                    football.scale.setTo(0.1);
+             qb.scale.setTo(0.5);
+
+            var football = game.add.sprite(500, 300, 'football');
+            football.scale.setTo(0.1);
+
+          var  tweenA = game.add.tween(wr1).to( { x: '-200' }, 2000, "Quart.easeOut");
+          var  tweenB = game.add.tween(wr1).to( { y: '+200'}, 2000, "Quart.easeOut");
+            function move() {
+          	// game.add.tween(wr1).to( { x: '-300' },1700, Phaser.Easing.Linear.None, true)
+            // game.add.tween(wr1).to( { y: '-300' },1700, Phaser.Easing.Linear.None, true);
+            game.add.tween(wr2).to( { x: '-50' }, 1000, Phaser.Easing.Linear.None, true);
+            game.add.tween(wr3).to( { x: '-150' }, 1000, Phaser.Easing.Linear.None, true);
+            game.add.tween(wr4).to( { x: '-750' }, 1000, Phaser.Easing.Linear.None, true)
+            tweenA.chain(tweenB);
+            tweenA.start();
+          }
+
+          move();
+
+
 
 
         }
 
         function  update(){
-
-
 
         }
 
